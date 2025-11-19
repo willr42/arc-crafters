@@ -15,6 +15,42 @@
   --font-secondary: 'Barlow', sans-serif;
   --font-tertiary: 'Prompt', sans-serif;
 }
+
+.gradient-common {
+  background-color: #0d1119;
+  background-image:
+    linear-gradient(to bottom, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.5)),
+    linear-gradient(to right, rgb(28, 34, 41), rgb(13, 17, 25));
+}
+
+.gradient-uncommon {
+  background-color: #114a41;
+  background-image:
+    linear-gradient(to bottom, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.5)),
+    linear-gradient(to right, rgb(17, 74, 65) 15%, rgb(0, 8, 29));
+}
+
+.gradient-rare {
+  background-color: #0a3256;
+  background-image:
+    linear-gradient(to bottom, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.5)),
+    linear-gradient(to right, rgb(10, 50, 86), rgb(3, 26, 57));
+}
+
+.gradient-epic {
+  background-color: #4b1859;
+  background-image:
+    linear-gradient(to bottom, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.5)),
+    linear-gradient(to right, rgb(75, 24, 89) 15%, rgb(14, 16, 63));
+}
+
+.gradient-legendary {
+  background-color: #5e5c14;
+  background-image:
+    linear-gradient(to bottom, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.5)),
+    linear-gradient(to right, rgb(94, 92, 20) 15%, rgb(0, 14, 33));
+}
+
 /* 
 .barlow-regular {
   font-family: 'Barlow', sans-serif;
