@@ -6,6 +6,11 @@
   --color-arc-green: #05ff74;
   --color-arc-blue: #5fffff;
   --color-arc-yellow: #ffea00;
+  --color-arc-rarity-common: #7b7775;
+  --color-arc-rarity-uncommon: #26bf57;
+  --color-arc-rarity-rare: #0aafe8;
+  --color-arc-rarity-epic: #d73495;
+  --color-arc-rarity-legendary: #ffc601;
   --font-primary: 'Urbanist', sans-serif;
   --font-secondary: 'Barlow', sans-serif;
   --font-tertiary: 'Prompt', sans-serif;
