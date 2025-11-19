@@ -47,7 +47,7 @@ function App() {
 const headingCn = cva('font-bold uppercase', {
   variants: {
     intent: {
-      primary: 'font-primary',
+      primary: 'font-primary text-2xl',
       secondary: 'font-secondary',
       tertiary: 'font-tertiary capitalize',
     },
