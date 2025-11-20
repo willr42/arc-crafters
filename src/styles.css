@@ -2,10 +2,12 @@
 @import 'tailwindcss';
 
 @theme {
+  --color-black: #090c19;
   --color-arc-red: #ff0000;
   --color-arc-green: #05ff74;
   --color-arc-blue: #5fffff;
   --color-arc-yellow: #ffea00;
+  --color-arc-muted: #f9eedf;
   --color-arc-rarity-common: #7b7775;
   --color-arc-rarity-uncommon: #26bf57;
   --color-arc-rarity-rare: #0aafe8;
