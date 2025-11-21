@@ -1,17 +1,27 @@
-import { Command, FileSystem } from '@effect/platform';
+import { Command, FileSystem, Path } from '@effect/platform';
 import {
   NodeContext,
   NodeFileSystem,
   NodeRuntime,
 } from '@effect/platform-node';
-import { Console, Effect } from 'effect';
+import { tmpdir } from 'node:os';
+import { Effect } from 'effect';
 import { ItemDecoder } from './schema.ts';
 
-// TODO: if data exists, don't make new dir
 const createTmpDir = Effect.gen(function* () {
   const fs = yield* FileSystem.FileSystem;
-  const dir = yield* fs.makeTempDirectory({ prefix: 'arc-' });
-  return dir;
+  const path = yield* Path.Path;
+
+  const tmpDirPath = tmpdir();
+  const arcPath = path.join(tmpDirPath, 'arc-data');
+  if (fs.exists(arcPath)) {
+    yield* Effect.logInfo(`${arcPath} already exists`);
+    return arcPath;
+  }
+  yield* Effect.logInfo(`Creating dir at ${arcPath}`);
+  yield* fs.makeDirectory(arcPath);
+
+  return arcPath;
 });
 
 const cloneRepo = (repo: string, dest: string) => {
@@ -60,7 +70,6 @@ const processAll = (dir: string) =>
     const filenames = yield* listFiles(dir);
     const results = yield* Effect.forEach(filenames, (filename) => {
       const fullPath = `${dir}/${filename}`;
-      Console.log(`Reading ${fullPath}`);
       return readAndValidateFile(fullPath);
     });
     return results;
