@@ -10,7 +10,7 @@
     "lint": "eslint",
     "format": "prettier",
     "check": "prettier --write . && eslint --fix",
-    "ingest": "node --experimental-strip-types scripts/ingest.ts"
+    "ingest": "tsx scripts/ingest.ts"
   },
   "dependencies": {
     "@effect/platform": "^0.93.3",
@@ -46,6 +46,7 @@
     "jsdom": "^27.0.0",
     "prettier": "^3.5.3",
     "prettier-plugin-tailwindcss": "^0.7.1",
+    "tsx": "^4.20.6",
     "typescript": "^5.7.2",
     "vite": "^7.1.7",
     "vitest": "^3.0.5",
