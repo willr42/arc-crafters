@@ -42,7 +42,7 @@ const fetchRepoToTemp = Effect.gen(function* (_) {
   const dest = `${tmpDir}/repo`;
   const result = yield* cloneRepo(
     // FIXME: env var for data source
-    'https://github.com/RaidTheory/arcraiders-data.git',
+    'https://github.com/willr42/arcraiders-data.git',
     dest,
   );
 
