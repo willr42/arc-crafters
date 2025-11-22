@@ -12,7 +12,7 @@ const BaseItemSchema = Schema.Struct({
   name: localisedField,
   description: localisedField,
   rarity: Schema.Literal('Common', 'Uncommon', 'Rare', 'Legendary', 'Epic'),
-  value: Schema.Number,
+  value: Schema.optional(Schema.Number),
   weightKg: Schema.optional(Schema.Number),
   stackSize: Schema.Number,
   imageFilename: Schema.optional(Schema.URL),
@@ -60,7 +60,8 @@ const QuickUseSchema = Schema.Struct({
   // salvagesInto: ingredientsField,
   recyclesInto: optionalIngredientsField,
   salvagesInto: optionalIngredientsField,
-  effects: Schema.Record({ key: Schema.String, value: localisedField }),
+  // Not every QU has an effect eg. door blocker
+  effects: Schema.optional(Schema.Record({ key: Schema.String, value: localisedField })),
 });
 
 const TopsideMaterialSchema = Schema.Struct({
@@ -116,6 +117,8 @@ const RecyclableSchema = Schema.Struct({
   ...BaseItemSchema.fields,
   type: Schema.Literal('Recyclable'),
   foundIn: Schema.String,
+  // Not every Recyclable is stackable eg. damaged wasp driver
+  stackSize: Schema.optional(Schema.Number),
   // FIXME: missing recyclesInto/salvagesInto data
   // recyclesInto: ingredientsField,
   // salvagesInto: ingredientsField,
@@ -165,6 +168,11 @@ const AssaultRifleSchema = createWeaponSchema('Assault Rifle');
 const PistolSchema = createWeaponSchema('Pistol');
 const WeaponSchemas = [HandCannonSchema, AssaultRifleSchema, PistolSchema];
 
+const AugmentSchema = Schema.Struct({
+  ...BaseItemSchema.omit('stackSize').fields,
+  type: Schema.Literal('Augment')
+})
+
 const ItemSchema = Schema.Union(
   QuickUseSchema,
   BasicMaterialSchema,
@@ -179,6 +187,7 @@ const ItemSchema = Schema.Union(
   BackpackCharmSchema,
   KeySchema,
   ...WeaponSchemas,
+  AugmentSchema,
 );
 const ItemJsonSchema = Schema.parseJson(ItemSchema);
 export const ItemDecoder = Schema.decodeUnknown(ItemJsonSchema);
