@@ -1,13 +1,12 @@
 import { Schema } from 'effect';
-import { CosmeticsSchemas } from './schema/cosmetics.schema';
-import { WeaponSchemas } from './schema/weapons.schema';
 import {
   BaseItemSchema,
-  localisedField,
+  effectsField,
   ingredientsField,
   optionalIngredientsField,
-  effectsField,
 } from './schema/base.schema';
+import { CosmeticsSchemas } from './schema/cosmetics.schema';
+import { WeaponSchemas } from './schema/weapons.schema';
 
 const KeySchema = Schema.Struct({
   ...BaseItemSchema.fields,
