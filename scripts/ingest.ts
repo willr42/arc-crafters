@@ -4,69 +4,69 @@ import {
   NodeFileSystem,
   NodeRuntime,
 } from '@effect/platform-node';
-import { tmpdir } from 'node:os';
 import { Effect } from 'effect';
-import { ItemDecoder } from './schema.ts';
+import { tmpdir } from 'node:os';
+import { ItemDecoder } from './schema';
 
-const createTmpDir = Effect.gen(function* () {
+const cloneRepo = (repo: string, dest: string) => {
+  return Effect.gen(function* () {
+    yield* Effect.logInfo(`Cloning ${repo} into ${dest}`);
+
+    const cmd = Command.make('git', 'clone', '--depth=1', repo, dest);
+    yield* Command.string(cmd);
+
+    yield* Effect.logInfo(`Clone complete: ${dest}`);
+
+    return { dest };
+  });
+};
+
+const fetchRepoToTemp = Effect.gen(function* () {
   const fs = yield* FileSystem.FileSystem;
   const path = yield* Path.Path;
 
   const tmpDirPath = tmpdir();
   const arcPath = path.join(tmpDirPath, 'arc-data');
-  if (fs.exists(arcPath)) {
+  const dest = `${arcPath}/repo`;
+
+  const pathExists = yield* fs.exists(arcPath);
+
+  if (pathExists) {
     yield* Effect.logInfo(`${arcPath} already exists`);
-    return arcPath;
+    return dest;
+  } else {
+    yield* Effect.logInfo(`Creating dir at ${arcPath}`);
+
+    yield* fs.makeDirectory(arcPath);
+
+    const result = yield* cloneRepo(
+      // FIXME: env var for data source
+      'https://github.com/willr42/arcraiders-data.git',
+      dest,
+    );
+
+    return result.dest;
   }
-  yield* Effect.logInfo(`Creating dir at ${arcPath}`);
-  yield* fs.makeDirectory(arcPath);
-
-  return arcPath;
-});
-
-const cloneRepo = (repo: string, dest: string) => {
-  return Effect.gen(function* (_) {
-    yield* Effect.logInfo(`Cloning ${repo} into ${dest}`);
-
-    const cmd = Command.make('git', 'clone', '--depth=1', repo, dest);
-    const output = yield* Command.string(cmd);
-
-    yield* Effect.logInfo(`Clone complete: ${dest}`);
-
-    return { dest, output };
-  });
-};
-
-const fetchRepoToTemp = Effect.gen(function* (_) {
-  const tmpDir = yield* createTmpDir;
-  const dest = `${tmpDir}/repo`;
-  const result = yield* cloneRepo(
-    // FIXME: env var for data source
-    'https://github.com/willr42/arcraiders-data.git',
-    dest,
-  );
-
-  return result;
 });
 
 const listFiles = (dir: string) =>
-  Effect.gen(function* (_) {
+  Effect.gen(function* () {
     const fs = yield* FileSystem.FileSystem;
     const files = yield* fs.readDirectory(dir);
     return files.filter((f) => f.endsWith('.json'));
   });
 
 const readAndValidateFile = (filepath: string) =>
-  Effect.gen(function* (_) {
+  Effect.gen(function* () {
     const fs = yield* FileSystem.FileSystem;
     yield* Effect.logInfo(`Reading file: ${filepath}`);
     const content = yield* fs.readFileString(filepath);
-    const decode = yield* ItemDecoder(content);
-    return decode;
+    const decoded = yield* ItemDecoder(content);
+    return decoded;
   });
 
 const processAll = (dir: string) =>
-  Effect.gen(function* (_) {
+  Effect.gen(function* () {
     const filenames = yield* listFiles(dir);
     const results = yield* Effect.forEach(filenames, (filename) => {
       const fullPath = `${dir}/${filename}`;
@@ -75,8 +75,8 @@ const processAll = (dir: string) =>
     return results;
   });
 
-const program = Effect.gen(function* (_) {
-  const { dest: repoDir } = yield* fetchRepoToTemp;
+const program = Effect.gen(function* () {
+  const repoDir = yield* fetchRepoToTemp;
   const itemsDir = `${repoDir}/items`;
   const results = yield* processAll(itemsDir);
   yield* Effect.log(results);
