@@ -48,13 +48,13 @@ const CraftableSchema = Schema.Struct({
 });
 
 const QuickUseSchema = Schema.Struct({
-  ...BaseItemSchema.omit('stackSize').fields,
+  ...BaseItemSchema.fields,
+  type: Schema.Literal('Quick Use'),
   // Not every QU is stackable
   stackSize: Schema.optional(Schema.Number),
   // FIXME: missing recipe data
   // ...CraftableSchema.fields,
   recipe: optionalIngredientsField,
-  type: Schema.Literal('Quick Use'),
   // FIXME: missing recyclesInto/salvagesInto data
   // recyclesInto: ingredientsField,
   // salvagesInto: ingredientsField,
@@ -128,9 +128,9 @@ const RecyclableSchema = Schema.Struct({
 
 const ModificationSchema = Schema.Struct({
   ...BaseItemSchema.omit('stackSize').fields,
+  type: Schema.Literal('Modification'),
   //   FIXME: Not all recipes known yet?
   recipe: optionalIngredientsField,
-  type: Schema.Literal('Modification'),
   effects: Schema.Record({ key: Schema.String, value: localisedField }),
   // FIXME: missing recyclesInto/salvagesInto data
   // recyclesInto: ingredientsField,
@@ -141,8 +141,8 @@ const ModificationSchema = Schema.Struct({
 
 const BlueprintSchema = Schema.Struct({
   ...BaseItemSchema.omit('stackSize').fields,
-  value: Schema.optional(Schema.Number),
   type: Schema.Literal('Blueprint'),
+  value: Schema.optional(Schema.Number),
 });
 
 const WeaponSchema = Schema.Struct({
