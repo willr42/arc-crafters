@@ -135,6 +135,11 @@ const AugmentSchema = Schema.Struct({
   type: Schema.Literal('Augment'),
 });
 
+const MiscSchema = Schema.Struct({
+  ...BaseItemSchema.fields,
+  type: Schema.Literal('Misc'),
+});
+
 const ItemSchema = Schema.Union(
   QuickUseSchema,
   BasicMaterialSchema,
@@ -148,6 +153,7 @@ const ItemSchema = Schema.Union(
   BlueprintSchema,
   ...CosmeticsSchemas,
   KeySchema,
+  MiscSchema,
   ...WeaponSchemas,
   AugmentSchema,
   AmmunitionSchema,

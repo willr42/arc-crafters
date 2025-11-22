@@ -27,6 +27,7 @@ const BattleRifleSchema = createWeaponSchema('Battle Rifle');
 const SpecialSchema = createWeaponSchema('Special');
 const ShotgunSchema = createWeaponSchema('Shotgun');
 const SniperRifleSchema = createWeaponSchema('Sniper Rifle');
+const SMGSchema = createWeaponSchema('SMG');
 
 export const WeaponSchemas = [
   HandCannonSchema,
@@ -37,4 +38,5 @@ export const WeaponSchemas = [
   SpecialSchema,
   ShotgunSchema,
   SniperRifleSchema,
+  SMGSchema,
 ];
