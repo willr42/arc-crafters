@@ -1,93 +1,173 @@
 import { Schema } from 'effect';
 
 const localisedField = Schema.Struct({ en: Schema.String });
+const ingredientsField = Schema.Record({
+  key: Schema.String,
+  value: Schema.Number,
+});
+const optionalIngredientsField = Schema.optional(ingredientsField);
 
 const BaseItemSchema = Schema.Struct({
   id: Schema.String,
   name: localisedField,
   description: localisedField,
-  rarity: Schema.Literal('Common', 'Uncommon', 'Rare', 'Legendary'),
+  rarity: Schema.Literal('Common', 'Uncommon', 'Rare', 'Legendary', 'Epic'),
   value: Schema.Number,
-  weightKg: Schema.Number,
+  weightKg: Schema.optional(Schema.Number),
   stackSize: Schema.Number,
-  imageFilename: Schema.URL,
+  imageFilename: Schema.optional(Schema.URL),
 });
+
+const CosmeticSchema = BaseItemSchema.pick(
+  'id',
+  'name',
+  'description',
+  'rarity',
+).pipe(Schema.extend(Schema.Struct({ type: Schema.Literal('Cosmetic') })));
+
+const BackpackCharmSchema = BaseItemSchema.pick(
+  'id',
+  'name',
+  'description',
+  'rarity',
+  'imageFilename',
+).pipe(
+  Schema.extend(Schema.Struct({ type: Schema.Literal('Backpack Charm') })),
+);
+
+const KeySchema = BaseItemSchema.omit('stackSize').pipe(
+  Schema.extend(
+    Schema.Struct({
+      type: Schema.Literal('Key'),
+    }),
+  ),
+);
 
 const CraftableSchema = Schema.Struct({
-  recipe: Schema.Record({ key: Schema.String, value: Schema.Number }),
+  recipe: ingredientsField,
 });
 
-export const QuickUseSchema = Schema.Struct({
-  ...BaseItemSchema.fields,
-  ...CraftableSchema.fields,
+const QuickUseSchema = Schema.Struct({
+  ...BaseItemSchema.omit('stackSize').fields,
+  // Not every QU is stackable
+  stackSize: Schema.optional(Schema.Number),
+  // FIXME: missing recipe data
+  // ...CraftableSchema.fields,
+  recipe: optionalIngredientsField,
   type: Schema.Literal('Quick Use'),
-  recyclesInto: Schema.Record({ key: Schema.String, value: Schema.Number }),
-  salvagesInto: Schema.Record({ key: Schema.String, value: Schema.Number }),
+  // FIXME: missing recyclesInto/salvagesInto data
+  // recyclesInto: ingredientsField,
+  // salvagesInto: ingredientsField,
+  recyclesInto: optionalIngredientsField,
+  salvagesInto: optionalIngredientsField,
   effects: Schema.Record({ key: Schema.String, value: localisedField }),
 });
 
-// FIXME : should also have salvage? some item data appears missing?
-export const TopsideMaterialSchema = Schema.Struct({
+const TopsideMaterialSchema = Schema.Struct({
   ...BaseItemSchema.fields,
   type: Schema.Literal('Topside Material'),
-  recyclesInto: Schema.Record({ key: Schema.String, value: Schema.Number }),
+  // FIXME: missing recyclesInto/salvagesInto data
+  // recyclesInto: ingredientsField,
+  // salvagesInto: ingredientsField,
+  recyclesInto: optionalIngredientsField,
+  salvagesInto: optionalIngredientsField,
   foundIn: Schema.String,
 });
 
-// FIXME : should also have salvage? some item data appears missing
-export const RefinedMaterialSchema = Schema.Struct({
+const BasicMaterialSchema = Schema.Struct({
+  ...BaseItemSchema.fields,
+  type: Schema.Literal('Basic Material'),
+  foundIn: Schema.String,
+});
+
+const RefinedMaterialSchema = Schema.Struct({
   ...BaseItemSchema.fields,
   ...CraftableSchema.fields,
   type: Schema.Literal('Refined Material'),
-  recyclesInto: Schema.Record({ key: Schema.String, value: Schema.Number }),
+  // FIXME: missing recyclesInto/salvagesInto data
+  // recyclesInto: ingredientsField,
+  // salvagesInto: ingredientsField,
+  recyclesInto: optionalIngredientsField,
+  salvagesInto: optionalIngredientsField,
   foundIn: Schema.String,
 });
 
-export const NatureSchema = Schema.Struct({
+const NatureSchema = Schema.Struct({
   ...BaseItemSchema.fields,
   type: Schema.Literal('Nature'),
   foundIn: Schema.String,
-  effects: Schema.Record({ key: Schema.String, value: localisedField }),
+  // Not all natural items have an in-game effect
+  effects: Schema.optional(
+    Schema.Record({ key: Schema.String, value: localisedField }),
+  ),
 });
 
-export const TrinketSchema = Schema.Struct({
+const TrinketSchema = Schema.Struct({
   ...BaseItemSchema.fields,
   type: Schema.Literal('Trinket'),
-  foundIn: Schema.String,
+  // Quest items are considered Trinkets ("Celeste's Journal")
+  // and do not have value/stackSize/foundIn
+  value: Schema.optional(Schema.Number),
+  stackSize: Schema.optional(Schema.Number),
+  foundIn: Schema.optional(Schema.String),
 });
 
-export const RecyclableSchema = Schema.Struct({
+const RecyclableSchema = Schema.Struct({
   ...BaseItemSchema.fields,
   type: Schema.Literal('Recyclable'),
   foundIn: Schema.String,
-  recyclesInto: Schema.Record({ key: Schema.String, value: Schema.Number }),
-  salvagesInto: Schema.Record({ key: Schema.String, value: Schema.Number }),
+  // FIXME: missing recyclesInto/salvagesInto data
+  // recyclesInto: ingredientsField,
+  // salvagesInto: ingredientsField,
+  recyclesInto: optionalIngredientsField,
+  salvagesInto: optionalIngredientsField,
 });
 
-// FIXME: surely these should have recyclesInto/salvagesInto values too?
-export const ModificationSchema = Schema.Struct({
+const ModificationSchema = Schema.Struct({
   ...BaseItemSchema.omit('stackSize').fields,
   //   FIXME: Not all recipes known yet?
-  recipe: Schema.optional(
-    Schema.Record({ key: Schema.String, value: Schema.Number }),
-  ),
+  recipe: optionalIngredientsField,
   type: Schema.Literal('Modification'),
   effects: Schema.Record({ key: Schema.String, value: localisedField }),
-  recyclesInto: Schema.optional(
-    Schema.Record({ key: Schema.String, value: Schema.Number }),
-  ),
-  salvagesInto: Schema.optional(
-    Schema.Record({ key: Schema.String, value: Schema.Number }),
-  ),
+  // FIXME: missing recyclesInto/salvagesInto data
+  // recyclesInto: ingredientsField,
+  // salvagesInto: ingredientsField,
+  recyclesInto: optionalIngredientsField,
+  salvagesInto: optionalIngredientsField,
 });
 
-export const BlueprintSchema = Schema.Struct({
+const BlueprintSchema = Schema.Struct({
   ...BaseItemSchema.omit('stackSize').fields,
+  value: Schema.optional(Schema.Number),
   type: Schema.Literal('Blueprint'),
 });
 
+const WeaponSchema = Schema.Struct({
+  ...BaseItemSchema.omit('stackSize').fields,
+  // Only first weapon is craftable
+  recipe: optionalIngredientsField,
+  // Only subsequent weapons have upgradeCost
+  upgradeCost: optionalIngredientsField,
+  // FIXME: missing recyclesInto/salvagesInto data
+  // recyclesInto: ingredientsField,
+  // salvagesInto: ingredientsField,
+  recyclesInto: optionalIngredientsField,
+  salvagesInto: optionalIngredientsField,
+});
+
+const createWeaponSchema = (typeLiteral: string) =>
+  WeaponSchema.pipe(
+    Schema.extend(Schema.Struct({ type: Schema.Literal(typeLiteral) })),
+  );
+
+const HandCannonSchema = createWeaponSchema('Hand Cannon');
+const AssaultRifleSchema = createWeaponSchema('Assault Rifle');
+const PistolSchema = createWeaponSchema('Pistol');
+const WeaponSchemas = [HandCannonSchema, AssaultRifleSchema, PistolSchema];
+
 const ItemSchema = Schema.Union(
   QuickUseSchema,
+  BasicMaterialSchema,
   TopsideMaterialSchema,
   RefinedMaterialSchema,
   NatureSchema,
@@ -95,6 +175,10 @@ const ItemSchema = Schema.Union(
   RecyclableSchema,
   ModificationSchema,
   BlueprintSchema,
+  CosmeticSchema,
+  BackpackCharmSchema,
+  KeySchema,
+  ...WeaponSchemas,
 );
 const ItemJsonSchema = Schema.parseJson(ItemSchema);
 export const ItemDecoder = Schema.decodeUnknown(ItemJsonSchema);
