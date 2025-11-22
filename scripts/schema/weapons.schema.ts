@@ -1,5 +1,9 @@
 import { Schema } from 'effect';
-import { BaseItemSchema, optionalIngredientsField } from './base.schema';
+import {
+  BaseItemSchema,
+  effectsField,
+  optionalIngredientsField,
+} from './base.schema';
 
 const WeaponSchema = Schema.Struct({
   ...BaseItemSchema.fields,
@@ -29,14 +33,37 @@ const ShotgunSchema = createWeaponSchema('Shotgun');
 const SniperRifleSchema = createWeaponSchema('Sniper Rifle');
 const SMGSchema = createWeaponSchema('SMG');
 
+const ModificationSchema = Schema.Struct({
+  ...BaseItemSchema.fields,
+  type: Schema.Literal('Modification'),
+  //   FIXME: Not all recipes known yet?
+  recipe: optionalIngredientsField,
+  effects: effectsField,
+  // FIXME: not all compatibility known yet
+  compatibleWith: Schema.optional(Schema.Array(Schema.String)),
+  // FIXME: missing recyclesInto/salvagesInto data
+  // recyclesInto: ingredientsField,
+  // salvagesInto: ingredientsField,
+  recyclesInto: optionalIngredientsField,
+  salvagesInto: optionalIngredientsField,
+});
+
+const AmmunitionSchema = Schema.Struct({
+  ...BaseItemSchema.fields,
+  type: Schema.Literal('Ammunition'),
+  compatibleWith: Schema.Array(Schema.String),
+});
+
 export const WeaponSchemas = [
-  HandCannonSchema,
   AssaultRifleSchema,
-  PistolSchema,
-  LMGSchema,
   BattleRifleSchema,
-  SpecialSchema,
+  HandCannonSchema,
+  LMGSchema,
+  PistolSchema,
   ShotgunSchema,
-  SniperRifleSchema,
   SMGSchema,
+  SniperRifleSchema,
+  SpecialSchema,
+  ModificationSchema,
+  AmmunitionSchema,
 ];
