@@ -27,7 +27,7 @@ const fetchRepoToTemp = Effect.gen(function* () {
 
   const tmpDirPath = tmpdir();
   const arcPath = path.join(tmpDirPath, 'arc-data');
-  const dest = `${arcPath}/repo`;
+  const dest = path.join(arcPath, 'repo');
 
   const pathExists = yield* fs.exists(arcPath);
 
@@ -61,25 +61,61 @@ const readAndValidateFile = (filepath: string) =>
     const fs = yield* FileSystem.FileSystem;
     yield* Effect.logInfo(`Reading file: ${filepath}`);
     const content = yield* fs.readFileString(filepath);
-    const decoded = yield* ItemDecoder(content);
-    return decoded;
+    return yield* ItemDecoder(content);
   });
 
 const processAll = (dir: string) =>
   Effect.gen(function* () {
+    const path = yield* Path.Path;
     const filenames = yield* listFiles(dir);
-    const results = yield* Effect.forEach(filenames, (filename) => {
-      const fullPath = `${dir}/${filename}`;
-      return readAndValidateFile(fullPath);
-    });
-    return results;
+
+    const [failures, successes] = yield* Effect.partition(
+      filenames,
+      (filename) => {
+        const fullPath = path.join(dir, filename);
+        return readAndValidateFile(fullPath).pipe(
+          Effect.mapError((err) => ({ filename, error: err })),
+        );
+      },
+    );
+
+    // Log failures with filenames
+    yield* Effect.forEach(failures, (f) =>
+      Effect.logError(`Failed to decode ${f.filename}: ${String(f.error)}`),
+    );
+
+    // Build a plain object from successful items (suitable for JSON serialization)
+    const itemsObject = yield* Effect.sync(() =>
+      successes.reduce((acc: Record<string, unknown>, s: any) => {
+        acc[s.id] = s;
+        return acc;
+      }, {}),
+    );
+
+    return itemsObject;
   });
 
 const program = Effect.gen(function* () {
+  const path = yield* Path.Path;
+  const fs = yield* FileSystem.FileSystem;
+
   const repoDir = yield* fetchRepoToTemp;
-  const itemsDir = `${repoDir}/items`;
+  const itemsDir = path.join(repoDir, 'items');
   const results = yield* processAll(itemsDir);
-  yield* Effect.log(results);
+
+  // Write results to disk as JSON for use in the React app
+  const outDir = path.join('.', 'src', 'data');
+  const outFile = path.join(outDir, 'items.json');
+
+  const dirExists = yield* fs.exists(outDir);
+  if (!dirExists) {
+    yield* fs.makeDirectory(outDir);
+  }
+
+  const json = JSON.stringify(results, null, 2);
+  yield* fs.writeFileString(outFile, json);
+
+  yield* Effect.logInfo(`Wrote ${outFile}`);
 });
 
 NodeRuntime.runMain(
