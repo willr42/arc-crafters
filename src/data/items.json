@@ -888,6 +888,101 @@
     "imageFilename": "https://cdn.arctracker.io/items/blue_radio_renegade_color.png",
     "type": "Cosmetic"
   },
+  "bobcat_blueprint": {
+    "id": "bobcat_blueprint",
+    "name": "Bobcat Blueprint",
+    "description": "Fully automatic SMG with high fire rate but low accuracy.",
+    "rarity": "Epic",
+    "value": 15000,
+    "weightKg": 0,
+    "imageFilename": "https://cdn.arctracker.io/items/bobcat.png",
+    "type": "Blueprint"
+  },
+  "bobcat_i": {
+    "id": "bobcat_i",
+    "name": "Bobcat I",
+    "description": "Fully automatic SMG with high fire rate but low accuracy.",
+    "rarity": "Epic",
+    "value": 13000,
+    "weightKg": 7,
+    "imageFilename": "https://cdn.arctracker.io/items/bobcat.png",
+    "recipe": {
+      "magnetic_accelerator": 1,
+      "light_gun_parts": 3,
+      "exodus_modules": 2
+    },
+    "recyclesInto": {
+      "light_gun_parts": 2,
+      "advanced_mechanical_components": 2
+    },
+    "salvagesInto": {
+      "light_gun_parts": 2
+    },
+    "type": "SMG"
+  },
+  "bobcat_ii": {
+    "id": "bobcat_ii",
+    "name": "Bobcat II",
+    "description": "Fully automatic SMG with high fire rate but low accuracy.",
+    "rarity": "Epic",
+    "value": 17000,
+    "weightKg": 7,
+    "imageFilename": "https://cdn.arctracker.io/items/bobcat.png",
+    "upgradeCost": {
+      "advanced_mechanical_components": 2,
+      "light_gun_parts": 1
+    },
+    "recyclesInto": {
+      "light_gun_parts": 3,
+      "advanced_mechanical_components": 3
+    },
+    "salvagesInto": {
+      "light_gun_parts": 3
+    },
+    "type": "SMG"
+  },
+  "bobcat_iii": {
+    "id": "bobcat_iii",
+    "name": "Bobcat III",
+    "description": "Fully automatic SMG with high fire rate but low accuracy.",
+    "rarity": "Epic",
+    "value": 22000,
+    "weightKg": 7,
+    "imageFilename": "https://cdn.arctracker.io/items/bobcat.png",
+    "upgradeCost": {
+      "advanced_mechanical_components": 2,
+      "light_gun_parts": 3
+    },
+    "recyclesInto": {
+      "light_gun_parts": 4,
+      "advanced_mechanical_components": 4
+    },
+    "salvagesInto": {
+      "light_gun_parts": 4
+    },
+    "type": "SMG"
+  },
+  "bobcat_iv": {
+    "id": "bobcat_iv",
+    "name": "Bobcat IV",
+    "description": "Fully automatic SMG with high fire rate but low accuracy.",
+    "rarity": "Epic",
+    "value": 27000,
+    "weightKg": 7,
+    "imageFilename": "https://cdn.arctracker.io/items/bobcat.png",
+    "upgradeCost": {
+      "advanced_mechanical_components": 2,
+      "light_gun_parts": 3
+    },
+    "recyclesInto": {
+      "light_gun_parts": 4,
+      "advanced_mechanical_components": 5
+    },
+    "salvagesInto": {
+      "light_gun_parts": 5
+    },
+    "type": "SMG"
+  },
   "bombardier_cell": {
     "id": "bombardier_cell",
     "name": "Bombardier Cell",
@@ -1057,6 +1152,10 @@
     "value": 5000,
     "weightKg": 4,
     "imageFilename": "https://cdn.arctracker.io/items/burletta.png",
+    "upgradeCost": {
+      "mechanical_components": 3,
+      "simple_gun_parts": 1
+    },
     "recyclesInto": {
       "mechanical_components": 2,
       "simple_gun_parts": 2
@@ -1071,6 +1170,10 @@
     "value": 7000,
     "weightKg": 4,
     "imageFilename": "https://cdn.arctracker.io/items/burletta.png",
+    "upgradeCost": {
+      "mechanical_components": 3,
+      "simple_gun_parts": 1
+    },
     "recyclesInto": {
       "mechanical_components": 3,
       "simple_gun_parts": 3
@@ -1082,14 +1185,28 @@
     "name": "Burletta IV",
     "description": "Semi-automatic pistol with decent damage output and accuracy. Can be fired as fast as you can pull the trigger.",
     "rarity": "Uncommon",
-    "value": 9000,
+    "value": 10000,
     "weightKg": 4,
     "imageFilename": "https://cdn.arctracker.io/items/burletta.png",
+    "upgradeCost": {
+      "mechanical_components": 4,
+      "light_gun_parts": 1
+    },
     "recyclesInto": {
       "mechanical_components": 4,
       "simple_gun_parts": 4
     },
     "type": "Pistol"
+  },
+  "burned_arc_circuit": {
+    "id": "burned_arc_circuit",
+    "name": "Burned Arc Circuit",
+    "description": "Can be recycled into crafting materials.",
+    "rarity": "Uncommon",
+    "weightKg": 1,
+    "imageFilename": "https://cdn.arctracker.io/items/burned_arc_circuit.png",
+    "type": "Recyclable",
+    "foundIn": "ARC"
   },
   "burned_arc_circuitry": {
     "id": "burned_arc_circuitry",
@@ -1180,8 +1297,8 @@
     "type": "Trinket",
     "foundIn": "Residential, Commercial"
   },
-  "celestes_journal": {
-    "id": "celestes_journal",
+  "celeste_journal": {
+    "id": "celeste_journal",
     "name": "Celeste's Journal",
     "description": "Battered and torn, you can see the faint outline of doodles along the edges.",
     "rarity": "Common",
@@ -1189,8 +1306,8 @@
     "imageFilename": "https://cdn.arctracker.io/items/celestes_journal.png",
     "type": "Trinket"
   },
-  "celeste_journal": {
-    "id": "celeste_journal",
+  "celestes_journal": {
+    "id": "celestes_journal",
     "name": "Celeste's Journal",
     "description": "Battered and torn, you can see the faint outline of doodles along the edges.",
     "rarity": "Common",
@@ -1338,6 +1455,16 @@
       "wires": 1
     }
   },
+  "compensator_ii_blueprint": {
+    "id": "compensator_ii_blueprint",
+    "name": "Compensator II Blueprint",
+    "description": "Moderately reduces per-shot dispersion.",
+    "rarity": "Legendary",
+    "value": 5000,
+    "weightKg": 0,
+    "imageFilename": "https://cdn.arctracker.io/items/compensator_ii_blueprint.png",
+    "type": "Blueprint"
+  },
   "compensator_iii": {
     "id": "compensator_iii",
     "name": "Compensator III",
@@ -1377,22 +1504,12 @@
       "wires": 2
     }
   },
-  "compensator_ii_blueprint": {
-    "id": "compensator_ii_blueprint",
-    "name": "Compensator II Blueprint",
-    "description": "Moderately reduces per-shot dispersion.",
-    "rarity": "Legendary",
-    "value": 5000,
-    "weightKg": 0,
-    "imageFilename": "https://cdn.arctracker.io/items/compensator_ii_blueprint.png",
-    "type": "Blueprint"
-  },
   "complex_gun_parts": {
     "id": "complex_gun_parts",
     "name": "Complex Gun Parts",
     "description": "Used to craft advanced weapons. Used to craft: Equalizer, Jupiter",
     "rarity": "Epic",
-    "value": 2000,
+    "value": 3000,
     "weightKg": 1,
     "stackSize": 3,
     "imageFilename": "https://cdn.arctracker.io/items/complex_gun_parts.png",
@@ -1438,7 +1555,6 @@
     "rarity": "Rare",
     "value": 1000,
     "weightKg": 2,
-    "stackSize": 3,
     "imageFilename": "https://cdn.arctracker.io/items/cooling_coil.png",
     "type": "Recyclable",
     "foundIn": "Industrial",
@@ -1453,8 +1569,7 @@
     "description": "Can be recycled into crafting materials.",
     "rarity": "Rare",
     "value": 2000,
-    "weightKg": 1,
-    "stackSize": 3,
+    "weightKg": 3,
     "imageFilename": "https://cdn.arctracker.io/items/cooling_fan.png",
     "type": "Recyclable",
     "foundIn": "Technological",
@@ -1517,6 +1632,58 @@
     "salvagesInto": {
       "plastic_parts": 1
     }
+  },
+  "dam_control_tower_key": {
+    "id": "dam_control_tower_key",
+    "name": "Dam Control Tower Key",
+    "description": "Unlocks a door to the Control Tower on Dam Battlegrounds.",
+    "rarity": "Epic",
+    "value": 100,
+    "weightKg": 0.25,
+    "imageFilename": "https://cdn.arctracker.io/items/dam_control_tower_key.png",
+    "type": "Key"
+  },
+  "dam_staff_room_key": {
+    "id": "dam_staff_room_key",
+    "name": "Dam Staff Room Key",
+    "description": "A key to the staff room in The Dam.",
+    "rarity": "Uncommon",
+    "value": 100,
+    "weightKg": 0.25,
+    "stackSize": 1,
+    "imageFilename": "https://cdn.arctracker.io/items/dam_staff_room_key.png",
+    "type": "Key"
+  },
+  "dam_surveillance_key": {
+    "id": "dam_surveillance_key",
+    "name": "Dam Surveillance Key",
+    "description": "Unlocks a door in the Water Treatment Control building on Dam Battlegrounds.",
+    "rarity": "Uncommon",
+    "value": 100,
+    "weightKg": 0.25,
+    "imageFilename": "https://cdn.arctracker.io/items/dam_surveillance_key.png",
+    "type": "Key"
+  },
+  "dam_testing_annex_key": {
+    "id": "dam_testing_annex_key",
+    "name": "Dam Testing Annex Key",
+    "description": "Unlocks a door in the Testing Annex on Dam Battlegrounds.",
+    "rarity": "Rare",
+    "value": 100,
+    "weightKg": 0.25,
+    "imageFilename": "https://cdn.arctracker.io/items/dam_testing_annex_key.png",
+    "type": "Key"
+  },
+  "dam_utility_key": {
+    "id": "dam_utility_key",
+    "name": "Dam Utility Key",
+    "description": "A key for utility access in The Dam.",
+    "rarity": "Uncommon",
+    "value": 100,
+    "weightKg": 0.25,
+    "stackSize": 1,
+    "imageFilename": "https://cdn.arctracker.io/items/dam_utility_key.png",
+    "type": "Key"
   },
   "damaged_arc_motion_core": {
     "id": "damaged_arc_motion_core",
@@ -1651,58 +1818,6 @@
     "imageFilename": "https://cdn.arctracker.io/items/damaged_wasp_driver.png",
     "type": "Recyclable",
     "foundIn": "ARC"
-  },
-  "dam_control_tower_key": {
-    "id": "dam_control_tower_key",
-    "name": "Dam Control Tower Key",
-    "description": "Unlocks a door to the Control Tower on Dam Battlegrounds.",
-    "rarity": "Epic",
-    "value": 100,
-    "weightKg": 0.25,
-    "imageFilename": "https://cdn.arctracker.io/items/dam_control_tower_key.png",
-    "type": "Key"
-  },
-  "dam_staff_room_key": {
-    "id": "dam_staff_room_key",
-    "name": "Dam Staff Room Key",
-    "description": "A key to the staff room in The Dam.",
-    "rarity": "Uncommon",
-    "value": 100,
-    "weightKg": 0.25,
-    "stackSize": 1,
-    "imageFilename": "https://cdn.arctracker.io/items/dam_staff_room_key.png",
-    "type": "Key"
-  },
-  "dam_surveillance_key": {
-    "id": "dam_surveillance_key",
-    "name": "Dam Surveillance Key",
-    "description": "Unlocks a door in the Water Treatment Control building on Dam Battlegrounds.",
-    "rarity": "Uncommon",
-    "value": 100,
-    "weightKg": 0.25,
-    "imageFilename": "https://cdn.arctracker.io/items/dam_surveillance_key.png",
-    "type": "Key"
-  },
-  "dam_testing_annex_key": {
-    "id": "dam_testing_annex_key",
-    "name": "Dam Testing Annex Key",
-    "description": "Unlocks a door in the Testing Annex on Dam Battlegrounds.",
-    "rarity": "Rare",
-    "value": 100,
-    "weightKg": 0.25,
-    "imageFilename": "https://cdn.arctracker.io/items/dam_testing_annex_key.png",
-    "type": "Key"
-  },
-  "dam_utility_key": {
-    "id": "dam_utility_key",
-    "name": "Dam Utility Key",
-    "description": "A key for utility access in The Dam.",
-    "rarity": "Uncommon",
-    "value": 100,
-    "weightKg": 0.25,
-    "stackSize": 1,
-    "imageFilename": "https://cdn.arctracker.io/items/dam_utility_key.png",
-    "type": "Key"
   },
   "dart_board": {
     "id": "dart_board",
@@ -2144,6 +2259,10 @@
     "type": "Modification",
     "effects": {
       "Magazine Size": "Magazine Size"
+    },
+    "recyclesInto": {
+      "steel_spring": 1,
+      "mechanical_components": 1
     }
   },
   "extended_light_mag_iii": {
@@ -2197,6 +2316,16 @@
       "Magazine Size": "Magazine Size"
     }
   },
+  "extended_medium_mag_ii_blueprint": {
+    "id": "extended_medium_mag_ii_blueprint",
+    "name": "Extended Medium Mag II Blueprint",
+    "description": "Moderately extends the ammo capacity of compatible weapons that use medium ammo.",
+    "rarity": "Legendary",
+    "value": 5000,
+    "weightKg": 0,
+    "imageFilename": "https://cdn.arctracker.io/items/extended_medium_mag_ii_blueprint.png",
+    "type": "Blueprint"
+  },
   "extended_medium_mag_iii": {
     "id": "extended_medium_mag_iii",
     "name": "Extended Medium Mag III",
@@ -2227,16 +2356,6 @@
     "weightKg": 0,
     "stackSize": 1,
     "imageFilename": "https://cdn.arctracker.io/items/extended_medium_mag_iii.png",
-    "type": "Blueprint"
-  },
-  "extended_medium_mag_ii_blueprint": {
-    "id": "extended_medium_mag_ii_blueprint",
-    "name": "Extended Medium Mag II Blueprint",
-    "description": "Moderately extends the ammo capacity of compatible weapons that use medium ammo.",
-    "rarity": "Legendary",
-    "value": 5000,
-    "weightKg": 0,
-    "imageFilename": "https://cdn.arctracker.io/items/extended_medium_mag_ii_blueprint.png",
     "type": "Blueprint"
   },
   "extended_shotgun_mag_i": {
@@ -2272,6 +2391,17 @@
       "Magazine Size": "Magazine Size"
     }
   },
+  "extended_shotgun_mag_ii_blueprint": {
+    "id": "extended_shotgun_mag_ii_blueprint",
+    "name": "Extended Shotgun Mag II Blueprint",
+    "description": "Moderately extends the ammo capacity of shotguns.",
+    "rarity": "Legendary",
+    "value": 5000,
+    "weightKg": 0,
+    "stackSize": 1,
+    "imageFilename": "https://cdn.arctracker.io/items/extended_shotgun_mag_ii.png",
+    "type": "Blueprint"
+  },
   "extended_shotgun_mag_iii": {
     "id": "extended_shotgun_mag_iii",
     "name": "Extended Shotgun Mag III",
@@ -2294,17 +2424,6 @@
     "weightKg": 0,
     "stackSize": 1,
     "imageFilename": "https://cdn.arctracker.io/items/extended_shotgun_mag_iii.png",
-    "type": "Blueprint"
-  },
-  "extended_shotgun_mag_ii_blueprint": {
-    "id": "extended_shotgun_mag_ii_blueprint",
-    "name": "Extended Shotgun Mag II Blueprint",
-    "description": "Moderately extends the ammo capacity of shotguns.",
-    "rarity": "Legendary",
-    "value": 5000,
-    "weightKg": 0,
-    "stackSize": 1,
-    "imageFilename": "https://cdn.arctracker.io/items/extended_shotgun_mag_ii.png",
     "type": "Blueprint"
   },
   "fabric": {
@@ -2360,6 +2479,13 @@
     "value": 1000,
     "weightKg": 8,
     "imageFilename": "https://cdn.arctracker.io/items/ferro.png",
+    "upgradeCost": {
+      "metal_parts": 7
+    },
+    "recyclesInto": {
+      "metal_parts": 4,
+      "simple_gun_parts": 3
+    },
     "type": "Battle Rifle"
   },
   "ferro_iii": {
@@ -2371,7 +2497,7 @@
     "weightKg": 8,
     "imageFilename": "https://cdn.arctracker.io/items/ferro.png",
     "upgradeCost": {
-      "mechanical_components": 1,
+      "metal_parts": 9,
       "simple_gun_parts": 1
     },
     "recyclesInto": {
@@ -2388,6 +2514,10 @@
     "value": 2900,
     "weightKg": 8,
     "imageFilename": "https://cdn.arctracker.io/items/ferro.png",
+    "upgradeCost": {
+      "mechanical_components": 1,
+      "simple_gun_parts": 1
+    },
     "recyclesInto": {
       "mechanical_components": 1,
       "simple_gun_parts": 2
@@ -2777,7 +2907,7 @@
     "weightKg": 3,
     "imageFilename": "https://cdn.arctracker.io/items/hairpin_i.png",
     "upgradeCost": {
-      "metal_parts": 6,
+      "metal_parts": 9,
       "simple_gun_parts": 1
     },
     "recyclesInto": {
@@ -3293,7 +3423,7 @@
     "description": "Can be recycled into crafting materials.",
     "rarity": "Epic",
     "value": 6000,
-    "weightKg": 3,
+    "weightKg": 1.5,
     "stackSize": 3,
     "imageFilename": "https://cdn.arctracker.io/items/ion_sputter.png",
     "type": "Recyclable",
@@ -3531,6 +3661,21 @@
       "Use Time": "Use Time"
     }
   },
+  "li_l_smoke_grenade": {
+    "id": "li_l_smoke_grenade",
+    "name": "Li'l Smoke Grenade",
+    "description": "A grenade that pops a thick but small smoke cloud on impact, blocking visibility from ARC and other Raiders.",
+    "rarity": "Common",
+    "value": 1,
+    "weightKg": 0.15,
+    "stackSize": 5,
+    "imageFilename": "https://cdn.arctracker.io/items/li_l_smoke_grenade.png",
+    "type": "Quick Use",
+    "effects": {
+      "Duration": "Duration",
+      "Radius": "Radius"
+    }
+  },
   "lidar_scanner": {
     "id": "lidar_scanner",
     "name": "Lidar Scanner",
@@ -3539,37 +3684,6 @@
     "weightKg": 0.25,
     "imageFilename": "https://cdn.arctracker.io/items/lidar_scanner.png",
     "type": "Trinket"
-  },
-  "lightweight_stock": {
-    "id": "lightweight_stock",
-    "name": "Lightweight Stock",
-    "description": "Moderately improves ADS & draw speed. Compatible with: Arpeggio, Kettle, Ferro, Renegade, Hullcracker",
-    "rarity": "Epic",
-    "value": 5000,
-    "weightKg": 0.25,
-    "imageFilename": "https://cdn.arctracker.io/items/lightweight_stock.png",
-    "type": "Modification",
-    "recipe": {
-      "mod_components": 2,
-      "duct_tape": 5
-    },
-    "effects": {
-      "Increased ADS Speed": "Increased ADS Speed",
-      "Reduced Equip Time": "Reduced Equip Time",
-      "Reduced Unequip Time": "Reduced Unequip Time",
-      "Increased Vertical Recoil": "Increased Vertical Recoil",
-      "Increased Recoil Recovery Time": "Increased Recoil Recovery Time"
-    }
-  },
-  "lightweight_stock_blueprint": {
-    "id": "lightweight_stock_blueprint",
-    "name": "Lightweight Stock Blueprint",
-    "description": "Moderately improves ADS & draw speed.",
-    "rarity": "Legendary",
-    "value": 5000,
-    "weightKg": 0,
-    "imageFilename": "https://cdn.arctracker.io/items/lightweight_stock_blueprint.png",
-    "type": "Blueprint"
   },
   "light_ammo": {
     "id": "light_ammo",
@@ -3666,6 +3780,37 @@
     "damageMitigation": 40,
     "movementSpeedModifier": 0
   },
+  "lightweight_stock": {
+    "id": "lightweight_stock",
+    "name": "Lightweight Stock",
+    "description": "Moderately improves ADS & draw speed. Compatible with: Arpeggio, Kettle, Ferro, Renegade, Hullcracker",
+    "rarity": "Epic",
+    "value": 5000,
+    "weightKg": 0.25,
+    "imageFilename": "https://cdn.arctracker.io/items/lightweight_stock.png",
+    "type": "Modification",
+    "recipe": {
+      "mod_components": 2,
+      "duct_tape": 5
+    },
+    "effects": {
+      "Increased ADS Speed": "Increased ADS Speed",
+      "Reduced Equip Time": "Reduced Equip Time",
+      "Reduced Unequip Time": "Reduced Unequip Time",
+      "Increased Vertical Recoil": "Increased Vertical Recoil",
+      "Increased Recoil Recovery Time": "Increased Recoil Recovery Time"
+    }
+  },
+  "lightweight_stock_blueprint": {
+    "id": "lightweight_stock_blueprint",
+    "name": "Lightweight Stock Blueprint",
+    "description": "Moderately improves ADS & draw speed.",
+    "rarity": "Legendary",
+    "value": 5000,
+    "weightKg": 0,
+    "imageFilename": "https://cdn.arctracker.io/items/lightweight_stock_blueprint.png",
+    "type": "Blueprint"
+  },
   "lil_smoke_grenade": {
     "id": "lil_smoke_grenade",
     "name": "Li'l Smoke Grenade",
@@ -3687,21 +3832,6 @@
     "recyclesInto": {
       "chemicals": 1,
       "plastic_parts": 1
-    }
-  },
-  "li_l_smoke_grenade": {
-    "id": "li_l_smoke_grenade",
-    "name": "Li'l Smoke Grenade",
-    "description": "A grenade that pops a thick but small smoke cloud on impact, blocking visibility from ARC and other Raiders.",
-    "rarity": "Common",
-    "value": 1,
-    "weightKg": 0.15,
-    "stackSize": 5,
-    "imageFilename": "https://cdn.arctracker.io/items/li_l_smoke_grenade.png",
-    "type": "Quick Use",
-    "effects": {
-      "Duration": "Duration",
-      "Radius": "Radius"
     }
   },
   "looting_mk1": {
@@ -3844,7 +3974,7 @@
     "foundIn": "Exodus",
     "recyclesInto": {
       "magnetic_accelerator": 1,
-      "spring": 1
+      "steel_spring": 1
     }
   },
   "major_aivas_patch": {
@@ -3883,8 +4013,8 @@
     "type": "Refined Material",
     "foundIn": "Mechanical",
     "recyclesInto": {
-      "metal_parts": 8,
-      "steel_spring": 2
+      "metal_parts": 3,
+      "rubber_parts": 2
     }
   },
   "medium_ammo": {
@@ -4147,6 +4277,16 @@
       "wires": 1
     }
   },
+  "muzzle_brake_ii_blueprint": {
+    "id": "muzzle_brake_ii_blueprint",
+    "name": "Muzzle Brake II Blueprint",
+    "description": "Moderately reduces both vertical recoil & horizontal recoil.",
+    "rarity": "Legendary",
+    "value": 5000,
+    "weightKg": 0,
+    "imageFilename": "https://cdn.arctracker.io/items/muzzle_brake_ii.png",
+    "type": "Blueprint"
+  },
   "muzzle_brake_iii": {
     "id": "muzzle_brake_iii",
     "name": "Muzzle Brake III",
@@ -4161,16 +4301,6 @@
       "Reduced Horizontal Recoil": "Reduced Horizontal Recoil",
       "Increased Durability Burn Rate": "Increased Durability Burn Rate"
     }
-  },
-  "muzzle_brake_ii_blueprint": {
-    "id": "muzzle_brake_ii_blueprint",
-    "name": "Muzzle Brake II Blueprint",
-    "description": "Moderately reduces both vertical recoil & horizontal recoil.",
-    "rarity": "Legendary",
-    "value": 5000,
-    "weightKg": 0,
-    "imageFilename": "https://cdn.arctracker.io/items/muzzle_brake_ii.png",
-    "type": "Blueprint"
   },
   "noisemaker": {
     "id": "noisemaker",
@@ -4915,20 +5045,23 @@
       "Duration": "Duration"
     }
   },
-  "rocketeer_driver": {
-    "id": "rocketeer_driver",
-    "name": "Rocketeer Driver",
+  "ripped_safety_vest": {
+    "id": "ripped_safety_vest",
+    "name": "Ripped Safety Vest",
     "description": "Can be recycled into crafting materials.",
-    "rarity": "Epic",
-    "value": 5000,
-    "weightKg": 1,
+    "rarity": "Uncommon",
+    "value": 640,
+    "weightKg": 0.8,
     "stackSize": 3,
-    "imageFilename": "https://cdn.arctracker.io/items/rocketeer_driver.png",
+    "imageFilename": "https://cdn.arctracker.io/items/ripped_safety_vest.png",
     "type": "Recyclable",
-    "foundIn": "ARC",
+    "foundIn": "Industrial",
     "recyclesInto": {
-      "advanced_electrical_components": 2,
-      "arc_alloy": 3
+      "durable_cloth": 1,
+      "magnet": 1
+    },
+    "salvagesInto": {
+      "fabric": 8
     }
   },
   "rocket_thruster": {
@@ -4945,6 +5078,22 @@
     "recyclesInto": {
       "synthesized_fuel": 2,
       "metal_parts": 6
+    }
+  },
+  "rocketeer_driver": {
+    "id": "rocketeer_driver",
+    "name": "Rocketeer Driver",
+    "description": "Can be recycled into crafting materials.",
+    "rarity": "Epic",
+    "value": 5000,
+    "weightKg": 1,
+    "stackSize": 3,
+    "imageFilename": "https://cdn.arctracker.io/items/rocketeer_driver.png",
+    "type": "Recyclable",
+    "foundIn": "ARC",
+    "recyclesInto": {
+      "advanced_electrical_components": 2,
+      "arc_alloy": 3
     }
   },
   "roots": {
@@ -5208,6 +5357,7 @@
     "description": "Obtained from ARC enemies and activites. Can be recycled into scrap metal.",
     "rarity": "Uncommon",
     "value": 640,
+    "weightKg": 1,
     "stackSize": 3,
     "imageFilename": "https://cdn.arctracker.io/items/rusty_arc_steel.png",
     "type": "Recyclable",
@@ -5483,6 +5633,16 @@
       "Noise Reduction": "Noise Reduction"
     }
   },
+  "silencer_i_blueprint": {
+    "id": "silencer_i_blueprint",
+    "name": "Silencer I Blueprint",
+    "description": "A blueprint to craft the Silencer I.",
+    "rarity": "Legendary",
+    "value": 5000,
+    "weightKg": 0,
+    "imageFilename": "https://cdn.arctracker.io/items/silencer_i.png",
+    "type": "Blueprint"
+  },
   "silencer_ii": {
     "id": "silencer_ii",
     "name": "Silencer II",
@@ -5495,6 +5655,16 @@
     "effects": {
       "Reduced Noise": "Reduced Noise"
     }
+  },
+  "silencer_ii_blueprint": {
+    "id": "silencer_ii_blueprint",
+    "name": "Silencer II Blueprint",
+    "description": "A blueprint to craft the Silencer II.",
+    "rarity": "Legendary",
+    "value": 5000,
+    "weightKg": 0,
+    "imageFilename": "https://cdn.arctracker.io/items/silencer_ii.png",
+    "type": "Blueprint"
   },
   "silencer_iii": {
     "id": "silencer_iii",
@@ -5523,26 +5693,6 @@
     "salvagesInto": {
       "mod_components": 1
     }
-  },
-  "silencer_ii_blueprint": {
-    "id": "silencer_ii_blueprint",
-    "name": "Silencer II Blueprint",
-    "description": "A blueprint to craft the Silencer II.",
-    "rarity": "Legendary",
-    "value": 5000,
-    "weightKg": 0,
-    "imageFilename": "https://cdn.arctracker.io/items/silencer_ii.png",
-    "type": "Blueprint"
-  },
-  "silencer_i_blueprint": {
-    "id": "silencer_i_blueprint",
-    "name": "Silencer I Blueprint",
-    "description": "A blueprint to craft the Silencer I.",
-    "rarity": "Legendary",
-    "value": 5000,
-    "weightKg": 0,
-    "imageFilename": "https://cdn.arctracker.io/items/silencer_i.png",
-    "type": "Blueprint"
   },
   "silver_teaspoon_set": {
     "id": "silver_teaspoon_set",
@@ -6077,7 +6227,7 @@
     "description": "Can be recycled into crafting materials.",
     "rarity": "Rare",
     "value": 2000,
-    "weightKg": 0.75,
+    "weightKg": 1,
     "stackSize": 3,
     "imageFilename": "https://cdn.arctracker.io/items/surveyor_vault.png",
     "type": "Recyclable",
@@ -6119,6 +6269,9 @@
     "recyclesInto": {
       "plastic_parts": 3,
       "chemicals": 2
+    },
+    "salvagesInto": {
+      "plastic_parts": 2
     }
   },
   "tactical_mk1": {
@@ -6262,8 +6415,8 @@
     },
     "type": "Assault Rifle"
   },
-  "temptest_ii": {
-    "id": "temptest_ii",
+  "tempest_ii": {
+    "id": "tempest_ii",
     "name": "Tempest II",
     "description": "Fully automatic assault rifle with moderate fire rate and accuracy.",
     "rarity": "Epic",
@@ -6280,8 +6433,8 @@
     },
     "type": "Assault Rifle"
   },
-  "temptest_iii": {
-    "id": "temptest_iii",
+  "tempest_iii": {
+    "id": "tempest_iii",
     "name": "Tempest III",
     "description": "Fully automatic assault rifle with moderate fire rate and accuracy.",
     "rarity": "Epic",
@@ -6298,8 +6451,8 @@
     },
     "type": "Assault Rifle"
   },
-  "temptest_iv": {
-    "id": "temptest_iv",
+  "tempest_iv": {
+    "id": "tempest_iv",
     "name": "Tempest IV",
     "description": "Fully automatic assault rifle with moderate fire rate and accuracy.",
     "rarity": "Epic",
@@ -6748,8 +6901,12 @@
     "imageFilename": "https://cdn.arctracker.io/items/vita_shot.png",
     "type": "Quick Use",
     "effects": {
-      "Healing": "Healing",
+      "Healing": "Heilen",
       "Use Time": "Use Time"
+    },
+    "recipe": {
+      "antiseptic": 1,
+      "syringe": 1
     },
     "recyclesInto": {
       "chemicals": 4,
