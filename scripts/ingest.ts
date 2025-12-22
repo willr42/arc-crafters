@@ -8,6 +8,24 @@ import { Effect } from 'effect';
 import { tmpdir } from 'node:os';
 import { ItemDecoder } from './schema';
 
+const CRAFTABLES = [
+  'Ammunition',
+  'Assault Rifle',
+  'Augment',
+  'Battle Rifle',
+  'Hand Cannon',
+  'LMG',
+  'Material',
+  'Modification',
+  'Pistol',
+  'Quick Use',
+  'Refined Material',
+  'Shield',
+  'Shotgun',
+  'SMG',
+  'Sniper Rifle',
+] as const;
+
 const cloneRepo = (repo: string, dest: string) => {
   return Effect.gen(function* () {
     yield* Effect.logInfo(`Cloning ${repo} into ${dest}`);

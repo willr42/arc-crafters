@@ -13,7 +13,6 @@
     "ingest": "tsx scripts/ingest.ts"
   },
   "dependencies": {
-    "@effect/platform": "^0.93.3",
     "@tailwindcss/vite": "^4.0.6",
     "@tanstack/react-devtools": "^0.7.0",
     "@tanstack/react-router": "^1.132.0",
@@ -30,9 +29,11 @@
     "tailwind-merge": "^3.4.0",
     "tailwindcss": "^4.0.6",
     "vite-tsconfig-paths": "^5.1.4",
+    "zod": "^4.2.1",
     "zustand": "^5.0.8"
   },
   "devDependencies": {
+    "@effect/platform": "^0.93.3",
     "@effect/platform-node": "^0.101.1",
     "@tanstack/devtools-vite": "^0.3.11",
     "@tanstack/eslint-config": "^0.3.0",

@@ -34,7 +34,7 @@ export const useUiState = create<UiState>()(
           if (remaining <= 0) {
             delete newStash[itemId];
           } else {
-            newStash[itemId] = qty;
+            newStash[itemId] = remaining;
           }
           return { stash: newStash };
         }),

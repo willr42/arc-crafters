@@ -1,6 +1,7 @@
 import { Heading } from '@/components/Typography';
 import { useUiState } from '@/state';
 import { createFileRoute } from '@tanstack/react-router';
+import items from '../data/items.json';
 
 const REMOVABLE_QTY = 9999;
 export const Route = createFileRoute('/')({ component: App });
@@ -26,20 +27,26 @@ function App() {
             placeholder={'Advanced Mechanical Components Blueprint'}
           />
         </label> */}
-        <button
-          onClick={() => {
-            addToCraftList('anvil-iv');
-          }}
-        >
-          Add to store
-        </button>
         <div className="grid grid-cols-4">
-          <div className="gradient-legendary">
-            <img
-              src="https://cdn.arctracker.io/items/anvil.png"
-              className="p-2"
-            />
-          </div>
+          <ul>
+            {Object.keys(items).map((item) => {
+              const itemObj = items[item];
+              console.log(itemObj.rarity);
+              const rarityClassMap = {
+                Common: 'gradient-common',
+                Uncommon: 'gradient-uncommon',
+                Rare: 'gradient-rare',
+                Epic: 'gradient-epic',
+                Legendary: 'gradient-legendary',
+              };
+              return (
+                <li className={rarityClassMap[itemObj.rarity]}>
+                  <img src={itemObj.imageFilename} />
+                  {item}
+                </li>
+              );
+            })}
+          </ul>
         </div>
       </div>
       <div data-slot="shopping-list" className="bg-blue-700 p-2">
