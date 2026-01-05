@@ -1,6 +1,7 @@
 import { Heading } from '@/components/Typography';
 import { useUiState } from '@/state';
 import { createFileRoute } from '@tanstack/react-router';
+import { cx } from 'class-variance-authority';
 import items from '../data/items.json';
 
 const REMOVABLE_QTY = 9999;
@@ -12,12 +13,21 @@ function App() {
   const removeFromCraftList = useUiState((state) => state.removeFromCraftList);
 
   return (
-    <div className="grid min-h-screen grid-cols-3 font-secondary text-white">
-      <div data-slot="item-database" className="bg-red-700 p-2">
-        <Heading as="h1" intent="primary">
-          Items
-        </Heading>
-        {/* <label htmlFor="search" className="flex flex-col gap-2">
+    <div className="flex h-screen w-full flex-col overflow-hidden bg-[#0a0a0a] font-secondary text-zinc-400">
+      <header className="border-b border-zinc-800 p-4">
+        <h2 className="font-primary text-xs font-black tracking-[0.3em] text-zinc-500 uppercase">
+          ARC Raiders / Crafting Planner
+        </h2>
+      </header>
+      <div className="flex flex-col overflow-hidden md:flex-row">
+        <div
+          data-slot="item-database"
+          className="flex flex-col border-zinc-800 bg-zinc-900/20 md:w-1/4 md:border-r"
+        >
+          <Heading as="h1" intent="primary">
+            Items
+          </Heading>
+          {/* <label htmlFor="search" className="flex flex-col gap-2">
           Search
           <input
             id="search"
@@ -27,49 +37,59 @@ function App() {
             placeholder={'Advanced Mechanical Components Blueprint'}
           />
         </label> */}
-        <div className="grid grid-cols-4">
-          <ul>
+          <ul className="flex flex-col gap-2 overflow-y-scroll p-4">
             {Object.keys(items).map((item) => {
               const itemObj = items[item];
-              console.log(itemObj.rarity);
               const rarityClassMap = {
                 Common: 'gradient-common',
                 Uncommon: 'gradient-uncommon',
                 Rare: 'gradient-rare',
                 Epic: 'gradient-epic',
                 Legendary: 'gradient-legendary',
-              };
+              } as const;
+
               return (
-                <li className={rarityClassMap[itemObj.rarity]}>
+                <button
+                  className={cx([
+                    rarityClassMap[itemObj.rarity],
+                    'cursor-pointer p-3 select-none',
+                  ])}
+                >
                   <img src={itemObj.imageFilename} />
-                  {item}
-                </li>
+                  {itemObj.name}
+                </button>
               );
             })}
           </ul>
         </div>
-      </div>
-      <div data-slot="shopping-list" className="bg-blue-700 p-2">
-        <Heading as="h1" intent="primary">
-          Wishlist
-        </Heading>
-        {Object.entries(craftList).map(([id, qty]) => {
-          return (
-            <div
-              onClick={() => {
-                removeFromCraftList(id, REMOVABLE_QTY);
-              }}
-              key={id}
-            >
-              {id} - {qty}
-            </div>
-          );
-        })}
-      </div>
-      <div data-slot="stash" className="bg-green-700 p-2">
-        <Heading as="h1" intent="primary">
-          My stash
-        </Heading>
+        <div
+          data-slot="shopping-list"
+          className="flex flex-col bg-black md:w-1/2"
+        >
+          <Heading as="h1" intent="primary">
+            Wishlist
+          </Heading>
+          {Object.entries(craftList).map(([id, qty]) => {
+            return (
+              <div
+                onClick={() => {
+                  removeFromCraftList(id, REMOVABLE_QTY);
+                }}
+                key={id}
+              >
+                {id} - {qty}
+              </div>
+            );
+          })}
+        </div>
+        <div
+          data-slot="stash"
+          className="flex flex-col border-zinc-800 bg-zinc-900/20 md:w-1/4 md:border-l"
+        >
+          <Heading as="h1" intent="primary">
+            My stash
+          </Heading>
+        </div>
       </div>
     </div>
   );
