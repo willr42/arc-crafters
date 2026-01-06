@@ -2,7 +2,7 @@ import { Heading } from '@/components/Typography';
 import { useUiState } from '@/state';
 import { createFileRoute } from '@tanstack/react-router';
 import { cx } from 'class-variance-authority';
-import items from '../data/items.json';
+import { items } from '../data/items';
 
 const REMOVABLE_QTY = 9999;
 export const Route = createFileRoute('/')({ component: App });
@@ -38,8 +38,8 @@ function App() {
           />
         </label> */}
           <ul className="flex flex-col gap-2 overflow-y-scroll p-4">
-            {Object.keys(items).map((item) => {
-              const itemObj = items[item];
+            {Object.keys(items).map((itemKey) => {
+              const item = items[itemKey as keyof typeof items];
               const rarityClassMap = {
                 Common: 'gradient-common',
                 Uncommon: 'gradient-uncommon',
@@ -51,12 +51,12 @@ function App() {
               return (
                 <button
                   className={cx([
-                    rarityClassMap[itemObj.rarity],
+                    rarityClassMap[item.rarity as keyof typeof rarityClassMap],
                     'cursor-pointer p-3 select-none',
                   ])}
                 >
-                  <img src={itemObj.imageFilename} />
-                  {itemObj.name}
+                  <img src={item.imageFilename} />
+                  {item.name}
                 </button>
               );
             })}

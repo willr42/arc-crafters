@@ -39,4 +39,5 @@ const ItemSchema = Schema.Union(
 );
 
 const ItemJsonSchema = Schema.parseJson(ItemSchema);
-export const ItemDecoder = Schema.decodeUnknown(ItemJsonSchema);
+export type Item = Schema.Schema.Type<typeof ItemSchema>;
+export const ItemJSONDecoder = Schema.decodeUnknown(ItemJsonSchema);

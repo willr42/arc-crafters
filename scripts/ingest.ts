@@ -6,7 +6,7 @@ import {
 } from '@effect/platform-node';
 import { Effect } from 'effect';
 import { tmpdir } from 'node:os';
-import { ItemDecoder } from './schema';
+import { ItemJSONDecoder } from './schema';
 
 const CRAFTABLES = [
   'Ammunition',
@@ -25,6 +25,12 @@ const CRAFTABLES = [
   'SMG',
   'Sniper Rifle',
 ] as const;
+
+type Craftable = (typeof CRAFTABLES)[number];
+
+export const isCraftable = (s: string): s is Craftable => {
+  return (CRAFTABLES as readonly string[]).includes(s);
+};
 
 const cloneRepo = (repo: string, dest: string) => {
   return Effect.gen(function* () {
@@ -79,7 +85,7 @@ const readAndValidateFile = (filepath: string) =>
     const fs = yield* FileSystem.FileSystem;
     yield* Effect.logInfo(`Reading file: ${filepath}`);
     const content = yield* fs.readFileString(filepath);
-    return yield* ItemDecoder(content);
+    return yield* ItemJSONDecoder(content);
   });
 
 const processAll = (dir: string) =>
@@ -104,7 +110,10 @@ const processAll = (dir: string) =>
 
     // Build a plain object from successful items (suitable for JSON serialization)
     const itemsObject = yield* Effect.sync(() =>
-      successes.reduce((acc: Record<string, unknown>, s: any) => {
+      successes.reduce((acc: Record<string, unknown>, s) => {
+        if (!isCraftable(s.type)) {
+          return acc;
+        }
         acc[s.id] = s;
         return acc;
       }, {}),
@@ -123,7 +132,7 @@ const program = Effect.gen(function* () {
 
   // Write results to disk as JSON for use in the React app
   const outDir = path.join('.', 'src', 'data');
-  const outFile = path.join(outDir, 'items.json');
+  const outFile = path.join(outDir, 'items.ts');
 
   const dirExists = yield* fs.exists(outDir);
   if (!dirExists) {
@@ -131,7 +140,12 @@ const program = Effect.gen(function* () {
   }
 
   const json = JSON.stringify(results, null, 2);
-  yield* fs.writeFileString(outFile, json);
+  const finalStr = `
+  import { Item } from "scripts/schema";
+
+  export const items: Record<string, Item> = ${json} as const;
+  `;
+  yield* fs.writeFileString(outFile, finalStr);
 
   yield* Effect.logInfo(`Wrote ${outFile}`);
 });

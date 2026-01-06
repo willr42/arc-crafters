@@ -26,5 +26,5 @@ export const BaseItemSchema = Schema.Struct({
   value: Schema.optional(Schema.Number),
   weightKg: Schema.optional(Schema.Number),
   stackSize: Schema.optional(Schema.Number),
-  imageFilename: Schema.optional(Schema.URL),
+  imageFilename: Schema.optional(Schema.String),
 });
