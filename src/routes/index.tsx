@@ -39,7 +39,7 @@ function App() {
         </label> */}
           <ul className="flex flex-col gap-2 overflow-y-scroll p-4">
             {Object.keys(items).map((itemKey) => {
-              const item = items[itemKey as keyof typeof items];
+              const item = items[itemKey];
               const rarityClassMap = {
                 Common: 'gradient-common',
                 Uncommon: 'gradient-uncommon',
@@ -51,7 +51,7 @@ function App() {
               return (
                 <button
                   className={cx([
-                    rarityClassMap[item.rarity as keyof typeof rarityClassMap],
+                    rarityClassMap[item.rarity],
                     'cursor-pointer p-3 select-none',
                   ])}
                 >
